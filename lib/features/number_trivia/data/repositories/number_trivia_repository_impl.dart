@@ -1,13 +1,13 @@
-import 'package:clean_architecture/core/error/exceptions.dart';
-import 'package:clean_architecture/core/platform/network_info.dart';
-import 'package:clean_architecture/features/number_trivia/data/datasources/number_trivia_local_data_source.dart';
-import 'package:clean_architecture/features/number_trivia/data/datasources/number_trivia_remote_datasource.dart';
+import 'package:clean_architecture/features/number_trivia/data/datasources/number_trivia_remote_data_source.dart';
 import 'package:dartz/dartz.dart';
-
 import 'package:meta/meta.dart';
+
+import '../../../../core/error/exceptions.dart';
 import '../../../../core/error/failure.dart';
+import '../../../../core/network/network_info.dart';
 import '../../domain/entities/number_trivia.dart';
 import '../../domain/repositories/number_trivia_repository.dart';
+import '../datasources/number_trivia_local_data_source.dart';
 
 
 typedef Future<NumberTrivia> _ConcreteOrRandomChooser();
@@ -31,9 +31,6 @@ class NumberTriviaRepositoryImpl implements NumberTriviaRepository{
    return await _getTrivia((){
       return remoteDataSource.getConcreteNumberTrivia(number);
     });
-    
-    
-
     
   }
 
